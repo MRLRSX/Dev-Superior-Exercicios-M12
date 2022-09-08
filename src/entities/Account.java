@@ -48,7 +48,7 @@ public class Account {
 		if(this.balance < amount){
 			throw new WithdrawException("Withdraw error: The amount exceeds widthdraw limit US$: " + (balance + withdrawLimit));
 		}
-		this.balance -= amount;
+		this.balance -= amount + 3;
 	}
 	
 	public void deposit(Double amount) {

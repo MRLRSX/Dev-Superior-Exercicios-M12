@@ -32,6 +32,6 @@ public class BusinessAccount extends Account{
 		if((this.balance + getWithdrawLimit()) < amount){
 			throw new WithdrawException("Withdraw error: The amount exceeds widthdraw limit US$: " + (balance + getWithdrawLimit()));
 		}
-		this.balance += amount - 5;
+		this.balance -= amount + 5;
 	}
 }
