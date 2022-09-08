@@ -1,6 +1,7 @@
 package entities;
 
 import entities.exceptions.InterestRateException;
+import entities.exceptions.WithdrawException;
 
 public class SavingsAccount extends Account {
 
@@ -22,5 +23,13 @@ public class SavingsAccount extends Account {
 		}
 		
 		balance += balance * (interestRate / 100);
+	}
+	
+	@Override
+	public void withdraw(Double amount) throws WithdrawException{
+		if((this.balance + getWithdrawLimit()) < amount){
+			throw new WithdrawException("Withdraw error: The amount exceeds widthdraw limit US$: " + (balance + getWithdrawLimit()));
+		}
+		this.balance += amount - 7;
 	}
 }

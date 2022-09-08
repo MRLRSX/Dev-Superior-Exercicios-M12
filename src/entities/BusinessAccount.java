@@ -1,6 +1,7 @@
 package entities;
 
 import entities.exceptions.LoanLimitException;
+import entities.exceptions.WithdrawException;
 
 public class BusinessAccount extends Account{
 
@@ -24,5 +25,13 @@ public class BusinessAccount extends Account{
 			throw new LoanLimitException("LoanLimit error: The amount exceeds widthdraw limit US$: " + (balance + loanLimit));
 		}
 		this.balance += amount - 10;
+	}
+	
+	@Override
+	public void withdraw(Double amount) throws WithdrawException{
+		if((this.balance + getWithdrawLimit()) < amount){
+			throw new WithdrawException("Withdraw error: The amount exceeds widthdraw limit US$: " + (balance + getWithdrawLimit()));
+		}
+		this.balance += amount - 5;
 	}
 }
